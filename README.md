@@ -80,6 +80,36 @@ python test_model_selector.py
 ```
 This will run all the test cases and print the results for each dataset, including the Mean Squared Error (MSE) from cross-validation and bootstrapping, and the AIC score.
 
+### Basic Usage
+To use the Model Selector, follow the example below:
+```bash
+import pandas as pd
+from Project2.model_selection.generic_crossvalidation import ModelSelector
+
+def test_diabetes():
+    data = pd.read_csv("https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.csv",
+                       header=None)
+    X, y = data.iloc[:, :-1].values, data.iloc[:, -1].values
+    selector = ModelSelector()
+
+    model, alpha = "linear", 0.1
+    k_fold_mse = selector.k_fold_cross_validation(X, y, k=5, model_type=model, alpha=alpha)
+    bootstrap_mse = selector.bootstrapping(X, y, num_samples=150, model_type=model, alpha=alpha)
+    beta = selector.fit_linear_regression(X, y)
+    aic_score = selector.aic(X, y, beta, model)
+
+    results = {model: {"k_fold_mse": k_fold_mse, "bootstrap_mse": bootstrap_mse, "aic_score": aic_score}}
+
+    print(f"\nModel: {model.capitalize()}")
+    print(f"K-Fold MSE: {k_fold_mse:.4f}, Bootstrap MSE: {bootstrap_mse:.4f}, AIC: {aic_score:.4f}")
+
+    selector.best_model(results)
+    selector.visualize_model_comparison(results, "Test Diabetes")
+
+if __name__ == '__main__':
+    test_diabetes()
+```
+
 ## Test Cases Outputs
 
 Here are the test cases that demonstrate how to use the ModelSelector class on different datasets. Each test case includes cross-validation, bootstrapping, and model comparison.
