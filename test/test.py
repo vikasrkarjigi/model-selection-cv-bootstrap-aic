@@ -3,27 +3,21 @@ import pandas as pd
 from Project2.model_selection.generic_crossvalidation import ModelSelector
 
 def test_wine_quality():
-    # Load the dataset
     url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
     data = pd.read_csv(url, sep=';')
+    dataset_name = "Test Wine Quality"
 
-    # Features and target
-    X = data.iloc[:, :-1].values  # Features
-    y = data.iloc[:, -1].values   # Target
+    X = data.iloc[:, :-1].values
+    y = data.iloc[:, -1].values
 
-    # Initialize ModelSelector
     selector = ModelSelector()
 
-    # Model configurations
     models = ["linear", "ridge", "lasso"]
-    alpha = 1.0  # Regularization parameter for ridge and lasso
-    results = {}  # To store results of each model
-    print("Wine Quality Dataset Test")
+    alpha = 1.0
+    results = {}
+    print("\nWine Quality Dataset Test")
     for model in models:
-        # Perform k-fold cross-validation
         k_fold_mse = selector.k_fold_cross_validation(X, y, k=5, model_type=model, alpha=alpha)
-
-        # Perform bootstrapping
         bootstrap_mse = selector.bootstrapping(X, y, num_samples=100, model_type=model, alpha=alpha)
 
         # Fit the model to calculate AIC
@@ -37,7 +31,6 @@ def test_wine_quality():
             beta = selector.fit_lasso_regression(X, y, alpha)
             y_pred_function = selector.predict_lasso_regression
 
-        # Compute AIC
         aic_score = selector.aic(X, y, beta, model)
 
         # Print results
@@ -54,40 +47,31 @@ def test_wine_quality():
 
     # Identify and print the best model
     selector.best_model(results)
-    selector.visualize_model_comparison(results)
-
-if __name__ == "__main__":
-    test_wine_quality()
+    selector.visualize_model_comparison(results, dataset_name)
 
 # ================================================================================================================================
 
 def test_boston_housing():
-    # Load the dataset
     url = "https://raw.githubusercontent.com/selva86/datasets/master/BostonHousing.csv"
     data = pd.read_csv(url)
+    dataset_name = "Test Boston Housing"
 
-    # Features and target
     X = data.drop('medv', axis=1).values
     y = data['medv'].values
 
-    # Initialize ModelSelector
     selector = ModelSelector()
 
-    # Model configurations
     models = ["linear", "ridge", "lasso"]
-    alpha = 0.5  # Regularization parameter for ridge and lasso
+    alpha = 0.5
 
     results = {}
-    print("Boston Housing Dataset Test")
+    print("\nBoston Housing Dataset Test")
 
     for model in models:
-        # Perform k-fold cross-validation
         k_fold_mse = selector.k_fold_cross_validation(X, y, k=5, model_type=model, alpha=alpha)
 
-        # Perform bootstrapping
         bootstrap_mse = selector.bootstrapping(X, y, num_samples=100, model_type=model, alpha=alpha)
 
-        # Fit the model to calculate AIC
         if model == "linear":
             beta = selector.fit_linear_regression(X, y)
         elif model == "ridge":
@@ -95,7 +79,6 @@ def test_boston_housing():
         elif model == "lasso":
             beta = selector.fit_lasso_regression(X, y, alpha)
 
-        # Compute AIC
         aic_score = selector.aic(X, y, beta, model)
 
         # Print results
@@ -113,41 +96,31 @@ def test_boston_housing():
 
     # Identify and print the best model
     selector.best_model(results)
-    selector.visualize_model_comparison(results)
-
-
-if __name__ == "__main__":
-    test_boston_housing()
+    selector.visualize_model_comparison(results,dataset_name)
 
 # ========================================================================================================================
 
 def test_diabetes():
-    # Load the dataset
     url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.csv"
     data = pd.read_csv(url, header=None)
+    dataset_name = "Test Diabetes"
 
-    # Features and target
     X = data.iloc[:, :-1].values
     y = data.iloc[:, -1].values
 
-    # Initialize ModelSelector
     selector = ModelSelector()
 
-    # Model configurations
     models = ["linear", "ridge", "lasso"]
-    alpha = 0.1  # Regularization parameter for ridge and lasso
+    alpha = 0.1
 
     results = {}
-    print("Diabetes Dataset Test")
+    print("\nDiabetes Dataset Test")
 
     for model in models:
-        # Perform k-fold cross-validation
         k_fold_mse = selector.k_fold_cross_validation(X, y, k=5, model_type=model, alpha=alpha)
 
-        # Perform bootstrapping
         bootstrap_mse = selector.bootstrapping(X, y, num_samples=150, model_type=model, alpha=alpha)
 
-        # Fit the model to calculate AIC
         if model == "linear":
             beta = selector.fit_linear_regression(X, y)
         elif model == "ridge":
@@ -155,7 +128,6 @@ def test_diabetes():
         elif model == "lasso":
             beta = selector.fit_lasso_regression(X, y, alpha)
 
-        # Compute AIC
         aic_score = selector.aic(X, y, beta, model)
 
         # Print results
@@ -173,41 +145,31 @@ def test_diabetes():
 
     # Identify and print the best model
     selector.best_model(results)
-    selector.visualize_model_comparison(results)
-
-
-if __name__ == "__main__":
-    test_diabetes()
+    selector.visualize_model_comparison(results, dataset_name)
 
 # ========================================================================================================================
 
 def test_concrete_strength():
-    # Load the dataset
     url = "Concrete_Data.csv"
     data = pd.read_csv(url)
+    dataset_name = "Test Concrete Strength"
 
-    # Features and target
     X = data.drop('Concrete compressive strength(MPa, megapascals) ', axis=1).values
     y = data['Concrete compressive strength(MPa, megapascals) '].values
 
-    # Initialize ModelSelector
     selector = ModelSelector()
 
-    # Model configurations
     models = ["linear", "ridge", "lasso"]
-    alpha = 0.1  # Regularization parameter for ridge and lasso
+    alpha = 0.1
 
     results = {}
-    print("Concrete Compressive Strength Dataset Test")
+    print("\nConcrete Compressive Strength Dataset Test")
 
     for model in models:
-        # Perform k-fold cross-validation
         k_fold_mse = selector.k_fold_cross_validation(X, y, k=5, model_type=model, alpha=alpha)
 
-        # Perform bootstrapping
         bootstrap_mse = selector.bootstrapping(X, y, num_samples=150, model_type=model, alpha=alpha)
 
-        # Fit the model to calculate AIC
         if model == "linear":
             beta = selector.fit_linear_regression(X, y)
         elif model == "ridge":
@@ -215,7 +177,6 @@ def test_concrete_strength():
         elif model == "lasso":
             beta = selector.fit_lasso_regression(X, y, alpha)
 
-        # Compute AIC
         aic_score = selector.aic(X, y, beta, model)
 
         # Print results
@@ -233,42 +194,33 @@ def test_concrete_strength():
 
     # Identify and print the best model
     selector.best_model(results)
-    selector.visualize_model_comparison(results)
-
-
-if __name__ == "__main__":
-    test_concrete_strength()
+    selector.visualize_model_comparison(results, dataset_name)
 
 # ========================================================================================================================
 
 def test_polynomial_regression():
-    # Generate dataset
+
     np.random.seed(42)
     X = np.random.rand(100, 1) * 10
     y = 3 + 1.5 * X.squeeze() - 0.5 * (X.squeeze() ** 2) + np.random.randn(100) * 5
+    dataset_name = "Test Polynomial Regression"
 
-    # Add polynomial features manually
     degree = 2
     X_poly = np.hstack([X ** i for i in range(1, degree + 1)])
 
-    # Initialize ModelSelector
     selector = ModelSelector()
 
-    # Model configurations
     models = ["linear", "ridge", "lasso"]
-    alpha = 1.0  # Regularization parameter for ridge and lasso
+    alpha = 1.0
 
     results = {}
-    print("Polynomial Regression Test")
+    print("\nPolynomial Regression Test")
 
     for model in models:
-        # Perform k-fold cross-validation
         k_fold_mse = selector.k_fold_cross_validation(X_poly, y, k=5, model_type=model, alpha=alpha)
 
-        # Perform bootstrapping
         bootstrap_mse = selector.bootstrapping(X_poly, y, num_samples=100, model_type=model, alpha=alpha)
 
-        # Fit the model to calculate AIC
         if model == "linear":
             beta = selector.fit_linear_regression(X_poly, y)
             y_pred_function = selector.predict_linear_regression
@@ -279,7 +231,6 @@ def test_polynomial_regression():
             beta = selector.fit_lasso_regression(X_poly, y, alpha)
             y_pred_function = selector.predict_lasso_regression
 
-        # Compute AIC
         aic_score = selector.aic(X_poly, y, beta, model)
 
         # Print results
@@ -296,7 +247,11 @@ def test_polynomial_regression():
 
     # Identify and print the best model
     selector.best_model(results)
-    selector.visualize_model_comparison(results)
+    selector.visualize_model_comparison(results, dataset_name)
 
 if __name__ == "__main__":
+    test_wine_quality()
     test_polynomial_regression()
+    test_boston_housing()
+    test_concrete_strength()
+    test_diabetes()
