@@ -106,9 +106,9 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
    ```python
    test_wine_quality()
    
-<div style="text-align: center;">
-  <img src="test/Test_Wine_Quality.png" alt="Test Wine Quality" width="700" height="350"/>
-  <img src="test/Test_Wine_Quality_AIC.png" alt="Test Wine Quality AIC" width="700" height="350"/>
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="test/Test Wine Quality.png" alt="Test Wine Quality" width="700" height="350"/>
+  <img src="test/Test Wine Quality_AIC.png" alt="Test Wine Quality AIC" width="700" height="350"/>
 </div>    
    
 2. **Boston Housing Dataset**  
@@ -148,3 +148,7 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
 
 This will run all the test cases and print the results for each dataset, including the Mean Squared Error (MSE) from cross-validation and bootstrapping, and the AIC score.
 
+### Conclusion
+If you have not heard of K-fold cross-validation and bootstrapping, you cannot overemphasize how valuable these techniques are when it comes to evaluating and selecting different machine learning models. These methods assist in giving reliable and impartial evaluation of how well a model or a system does and how preditably it shall generalize the new unseen data. K-fold cross-validation provides the guideline for every data disseminating its experiences to the training and testing phases, making the model to be fully overestimated and also underestimated. On the other hand, bootstrapping use resampling to assess the stability and accuracy of the model, it provides more insights of the model than the cross-validation. Both methods are free of restrictions and can be used together with virtually any datasets and models of analysis without any strict constraints.
+
+However as with any other tool these approaches are not without their weaknesses. They can be slow for large data sets, whereas for small data sets or data sets with unequal proportions the performance can deteriorate. Gladly, most of these issues can easily be solved by employment of techniques such as, use of stratified sampling, adjusting fold or sample sizes, or simply running the simulations for a higher number of iterations to improve the accuracy. K-fold cross validation and Bootstrapping comes very handy when applied in the right manners; For any one working on the Machine learning it is a potent weapon to have from model building perspective.
