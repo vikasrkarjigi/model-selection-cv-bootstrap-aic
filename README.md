@@ -9,8 +9,6 @@
 ## Overview
 This project provides an implementation of two fundamental model selection techniques: So, the methods are the following two: **k-fold cross-validation** and **bootstrapping**. These methods are intended to assess and compare abilities of machine learning models on the data that they have never seen before, which may provide information on how well a particular model performs when confronted with new inputs, and how accurately a model can predict outcomes. The implementation is generic and not tied to any specific model and allows users to tune it to one’s needs and budgets by adjusting its parameters.
 
----
-
 ## Features
 
 ### K-Fold Cross-Validation
@@ -69,129 +67,84 @@ The ability to configure these parameters, makes the methods versatile enough to
 This implementation is planned to be incorporated as a regular piece in any machine learning process. Parameters are available where the user may adjust to fit the need of the evaluation process.
 
 
-### Installation
 
-To get started with this project, first you need **Python 3.x**. Then follow these installation steps:
-
-#### 1. Clone the Repository to your local machine:
-
+## Installation
+To get started with this project, follow the steps below to install the necessary dependencies:
+### 1. Clone the Repository
 ```bash
-git clone https://github.com/vikasrkarjigi/Project1.git
+git clone https://github.com/your-username/model-selection.git
+cd model-selection
 ```
-#### 2. Navigate to the project directory
+### 2. You can install the required libraries using pip:
 ```bash
-cd ElasticNetModel
+pip install numpy matplotlib pandas
 ```
-#### 3. You can install the required libraries using pip:
+### 3. Run the Tests
+After installation, you can run the test cases as follows:
 ```bash
-pip install numpy matplotlib
+python test_model_selector.py
 ```
-#### 4. Run the Test Script
-```bash
-python test_ElasticNetModel.py
-```
-This will run the test cases and print out the evaluation metrics and generate the plots.
+## Additional Features
+Several additional features have been implemented to enhance the model selection process:
+- **Added Lasso and Ridge with Normal Linear Regression**: Lasso and Ridge regression models have been added alongside the basic linear regression model to provide regularization techniques that help in controlling overfitting.
+  
+- **Comparison of AIC Values**: The AIC values for all models (linear regression, ridge, and lasso) are calculated and compared to determine the best model for the specific dataset. The model with the lowest AIC value is selected as the best performing model.
+- **Visualization of Model Performance**: A bar graph is plotted comparing the k-fold cross-validation MSE, bootstrap MSE, and AIC for all three models (linear regression, ridge, and lasso). This visualization helps users compare the performance of different models on the same dataset.
+- **Test Cases with Special Features**: Five test cases are implemented, each with a different special feature to assess model performance under different conditions. These include datasets with varying complexity and characteristics such as non-linearity, outliers, and imbalanced features.
 
-### Basic Usage
-To use the ElasticNet model, follow the example below:
-```bash
-from elasticnet.models.ElasticNet import ElasticNetModel
-import numpy as numpy
+### Implemented Two New Classes:
+- **BestModel**: This class is designed to return the best model for a given dataset based on the lowest AIC score.
+  
+- **VisualizeModelComparison**: This class visualizes the comparison between models by plotting a bar graph of k-fold cross-validation MSE, bootstrap MSE, and AIC for all models, offering better insight into model performance.
 
-# Create some synthetic data
-X, y = numpy.random.rand(100, 3), numpy.random.rand(100)
+## Test Cases
 
-# Initialize and fit the model
-model = ElasticNetModel(alpha=1.0, l1_ratio=0.5, max_iter=1000, tol=1e-4)
-model.fit(X, y)
+Here are the test cases that demonstrate how to use the ModelSelector class on different datasets. Each test case includes cross-validation, bootstrapping, and model comparison.
 
-# Predict using the trained model
-predictions = model.predict(X)
-
-# Evaluate the model
-model.evaluate(X, y, "ElasticNet Model Synthetic Data")
-
-```
-### Test Case Outputs
-
-Below are the screenshots showing the results of each test case included in this project:
-
-- **test_predict()**: 
-  Tests the model on a small dataset and verifies if the predictions are reasonable.
-<div style="text-align: center;">
-  <img src="elasticnet/images/small_test_dataset_output.png" alt="test_predict Output" width="700"/>
-</div>
-
-- **test_zero_variance_features()**: 
-  Tests the model on a dataset where one feature has zero variance.
-<div style="text-align: center;">
-  <img src="elasticnet/images/zero_variance_dataset_output.png" alt="test_zero_variance_features Output" width="700"/>
-</div>
-
-- **test_highly_correlated_features()**: 
-  Tests the model on highly correlated features to ensure it handles multicollinearity appropriately.
- <div style="text-align: center;">
-  <img src="elasticnet/images/high_correlated_dataset_output.png" alt="test_highly_correlated_features Output" width="700"/>
-</div>
-
-- **test_sparse_data()**: 
-  Tests the model on sparse data with many zero entries to check if regularization works correctly.
-<div style="text-align: center;">
-  <img src="elasticnet/images/sparse_dataset_output.png" alt="test_sparse_data Output" width="700"/>
-</div>
-
-- **test_with_outliers()**: 
-  Tests the model on a dataset with outliers to ensure predictions remain reasonable.
-<div style="text-align: center;">
-  <img src="elasticnet/images/outliers_dataset_output.png" alt="test_with_outliers Output" width="700"/>
-</div>
-
-- **test_large_dataset()**: 
-  Evaluates the model on a large dataset to ensure scalability and stability.
-<div style="text-align: center;">
-  <img src="elasticnet/images/large_dataset_output.png" alt="test_large_dataset Output" width="700"/>
-</div>
-
-- **test_different_alpha_l1_ratios()**: 
-  Tests the model with various values for `alpha` and `l1_ratio` to evaluate the impact of these parameters on performance.
-<div style="text-align: center;">
-  <img src="elasticnet/images/different_alpha_l1ratios_dataset_output_1.png" alt="test_different_alpha_l1_ratios Output 1" width="700"/>
-  <img src="elasticnet/images/different_alpha_l1ratios_dataset_output_2.png" alt="test_different_alpha_l1_ratios Output 2" width="700"/>
-  <img src="elasticnet/images/different_alpha_l1ratios_dataset_output_3.png" alt="test_different_alpha_l1_ratios Output 3" width="700"/>
-</div>
-
-- **test_non_normalized_data()**: 
-  Tests the model on non-normalized data to verify its ability to handle such inputs.
-<div style="text-align: center;">
-  <img src="elasticnet/images/non_normalized_dataset_output.png" alt="test_non_normalized_data Output" width="700"/>
-</div>
-
-Each screenshot corresponds to the results from the respective test case and provides a `visual representation` of the model's performance under various conditions.
-
----
-
-### Additional Features
-
-In addition to the basic requirements, the following enhancements have been implemented to go above and beyond what was asked:
-
-1. **Comprehensive Model Evaluation**:
-   - Every test checks model performance depending on **Mean Squared Error (MSE)**, **Mean Absolute Error (MAE)** and **R-Squared (R2)**.
-   - Besides, the model makes **residual** and **scatter plots** for the purpose of visual evaluation of predictions and residuals to attained further understanding of the model.
-
-2. **Extensive Test Coverage**:
-   - Explained many use cases: zero variance features, perfectly correlated features, sparse data, outliers, large datasets and different values of `alpha` and `l1_ratio`.
-   - All these test cases are integrated into the `test_ElasticNetModel.py` in order to ensure it follows the right behavior in several conditions.
-
-3. **Tolerance for Early Stopping**:
-   - As a stopping criterion, there is another parameter known as `tol` parameter has been implemented. If this change in coefficients in two successive iterations is less than this value, it means the convergence between iterations is so rapid and therefore the coordinate descent algorithm will stop early to enhance efficiency of computations.
-
-4. **Flexibility in Regularization**:
-   - Made `alpha` and `l1_ratio` parameters available to the users, enabling mass control of the **L1/L2** regularizing option and tuning of the model according to the particular application.
-   - To demonstrate how alpha and l1_ratio influence the outcome and strength of regularization on the prediction capability of the model, various sets of alpha and l1_ratio have been used.
+1. **Wine Quality Dataset**  
+   **Description**: This test evaluates the performance of different regression models (linear, ridge, and lasso) on the Wine Quality dataset, using 5-fold cross-validation and bootstrapping methods. It also calculates the AIC score for model comparison.
+   ```python
+   test_wine_quality()
    
-These additional features and enhancements make the model functional as well as efficient, flexible and adaptable for the different approaches that can be applied in data.
+<div style="text-align: center;">
+  <img src="test/Test_Wine_Quality.png" alt="Test Wine Quality" width="700" height="350"/>
+  <img src="test/Test_Wine_Quality_AIC.png" alt="Test Wine Quality AIC" width="700" height="350"/>
+</div>    
+   
+2. **Boston Housing Dataset**  
+   **Description**: This test evaluates the models (linear, ridge, and lasso) on the Boston Housing dataset. It computes the k-fold cross-validation MSE, bootstrapping MSE, and AIC score for each model.
+   ```python
+   test_boston_housing()
 
-### Conclusion
-If you have not heard of K-fold cross-validation and bootstrapping, you cannot overemphasize how valuable these techniques are when it comes to evaluating and selecting different machine learning models. These methods assist in giving reliable and impartial evaluation of how well a model or a system does and how preditably it shall generalize the new unseen data. K-fold cross-validation provides the guideline for every data disseminating its experiences to the training and testing phases, making the model to be fully overestimated and also underestimated. On the other hand, bootstrapping use resampling to assess the stability and accuracy of the model, it provides more insights of the model than the cross-validation. Both methods are free of restrictions and can be used together with virtually any datasets and models of analysis without any strict constraints.
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="test/Test Boston Housing.png" alt="Test Boston Housing" width="500" height="350"/>
+  <img src="test/Test Boston Housing_AIC.png" alt="Test Boston Housing AIC" width="500" height="350"/>
+</div>
 
-However as with any other tool these approaches are not without their weaknesses. They can be slow for large data sets, whereas for small data sets or data sets with unequal proportions the performance can deteriorate. Gladly, most of these issues can easily be solved by employment of techniques such as, use of stratified sampling, adjusting fold or sample sizes, or simply running the simulations for a higher number of iterations to improve the accuracy. K-fold cross validation and Bootstrapping comes very handy when applied in the right manners; For any one working on the Machine learning it is a potent weapon to have from model building perspective.
+
+3. **Diabetes Dataset**
+   **Description**: This test performs regression on the Pima Indians Diabetes dataset, comparing the models using cross-validation, bootstrapping, and AIC score.
+   ```python
+   test_diabetes()
+
+4. **Concrete Strength Dataset**
+   **Description**: This test assesses the concrete compressive strength dataset, evaluating linear, ridge, and lasso regression models using cross-validation, bootstrapping, and AIC score.
+   ```python
+   test_concrete_strength()
+
+5. **Polynomial Regression**
+   **Description**: This test evaluates polynomial regression models (with degree 2) on synthetic data to compare the performance of linear, ridge, and lasso regression models.
+   ```python
+   test_polynomial_regression()
+   
+6. **Example Usage**
+   After cloning the repository and installing dependencies, you can run the tests as follows:
+   ```python
+   test_wine_quality()  # Test the Wine Quality dataset
+   test_polynomial_regression()  # Test Polynomial Regression
+   test_boston_housing()  # Test the Boston Housing dataset
+   test_concrete_strength()  # Test Concrete Strength dataset
+   test_diabetes()  # Test the Diabetes dataset
+
+This will run all the test cases and print the results for each dataset, including the Mean Squared Error (MSE) from cross-validation and bootstrapping, and the AIC score.
+
