@@ -17,7 +17,7 @@ This project provides an implementation of two fundamental model selection techn
 - **Reproducibility:** Optional Parameter: random_state as this is used to initialized the random number generator for reproduction of the partitions of the data for testing and evaluation.
 
 ### Bootstrapping
-- **Custom Sampling:*Decrease the frequency and the size of the bootstrap samples in relation to the dataset you are testing.
+- **Custom Sampling:** Decrease the frequency and the size of the bootstrap samples in relation to the dataset you are testing.
 - **With Replacement:** Any individual datum may also be repeated within one sample, allowing for more reliable resampling.
 - **Reproducibility:** It is recommended you set a means of `random_state` for deterministic and reproducible purposes.
 
@@ -63,17 +63,12 @@ The implementation provides flexibility by exposing the following parameters:
 
 The ability to configure these parameters, makes the methods versatile enough to handle a wide range of datasets and users needs for any other machine learning processes.
 
-## Usage
-This implementation is planned to be incorporated as a regular piece in any machine learning process. Parameters are available where the user may adjust to fit the need of the evaluation process.
-
-
-
 ## Installation
 To get started with this project, follow the steps below to install the necessary dependencies:
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/model-selection.git
-cd model-selection
+git clone https://github.com/vikasrkarjigi/Project2.git
+cd model_selection
 ```
 ### 2. You can install the required libraries using pip:
 ```bash
@@ -95,6 +90,12 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
    ```python
    test_wine_quality()
    
+**OUTPUTS**:
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="results/Wine_quality_test_result_1.png" alt="Wine Quality Test Result" width="500" height="200"/>
+  <img src="results/Wine_quality_test_result_2.png" alt="Wine Quality Test Result" width="500" height="200"/>
+</div>
+   
 <div style="display: flex; justify-content: center; gap: 20px;">
   <img src="test/Test Wine Quality.png" alt="Test Wine Quality" width="500" height="300"/>
   <img src="test/Test Wine Quality_AIC.png" alt="Test Wine Quality AIC" width="500" height="300"/>
@@ -104,6 +105,12 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
    **Description**: This test evaluates the models (linear, ridge, and lasso) on the Boston Housing dataset. It computes the k-fold cross-validation MSE, bootstrapping MSE, and AIC score for each model.
    ```python
    test_boston_housing()
+   
+**OUTPUTS**:
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="results/Boston_housing_dataset_test_1.png" alt="Boston Housing Dataset Test Result" width="500" height="200"/>
+  <img src="results/Boston_housing_dataset_test_2.png" alt="Boston Housing Dataset Test Result" width="500" height="200"/>
+</div>
 
 <div style="display: flex; justify-content: center; gap: 20px;">
   <img src="test/Test Boston Housing.png" alt="Test Boston Housing" width="500" height="300"/>
@@ -116,15 +123,27 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
    ```python
    test_diabetes()
    
+**OUTPUTS**:
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="results/Diabetes_dataset_test_1.png" alt="Diabetes Dataset Test Result" width="500" height="200"/>
+  <img src="results/Diabetes_dataset_test_2.png" alt="Diabetes Dataset Test Result" width="500" height="200"/>
+</div>
+   
 <div style="display: flex; justify-content: center; gap: 20px;">
   <img src="test/Test Diabetes.png" alt="Test Diabetes" width="500" height="300"/>
   <img src="test/Test Diabetes_AIC.png" alt="Test Diabetes AIC" width="500" height="300"/>
-</div>    
+</div>
 
 4. **Concrete Strength Dataset**
    **Description**: This test assesses the concrete compressive strength dataset, evaluating linear, ridge, and lasso regression models using cross-validation, bootstrapping, and AIC score.
    ```python
    test_concrete_strength()
+   
+**OUTPUTS**:
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="results/Concrete_strength_dataset_test_1.png" alt="Concrete Strength Dataset Test Result" width="500" height="200"/>
+  <img src="results/Concrete_strength_dataset_test_2.png" alt="Concrete Strength Dataset Test Result" width="500" height="200"/>
+</div>
    
 <div style="display: flex; justify-content: center; gap: 20px;">
   <img src="test/Test Concrete Strength.png" alt="Test Concrete Strength" width="500" height="300"/>
@@ -135,6 +154,12 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
    **Description**: This test evaluates polynomial regression models (with degree 2) on synthetic data to compare the performance of linear, ridge, and lasso regression models.
    ```python
    test_polynomial_regression()
+   
+**OUTPUTS**:
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="results/Polynomial_regression_test_1.png" alt="Polynomial Regression Test Result" width="500" height="200"/>
+  <img src="results/Polynomial_regression_test_2.png" alt="Polynomial Regression Test Result" width="500" height="200"/>
+</div>
    
 <div style="display: flex; justify-content: center; gap: 20px;">
   <img src="test/Test Polynomial Regression.png" alt="Test Polynomial Regression" width="500" height="300"/>
