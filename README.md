@@ -46,20 +46,21 @@ Despite this, both methods, in particularly in their generic form, require signi
 ### 3. What could you implement given more time to mitigate these cases or help users of your methods?
 Several enhancements can be implemented to address the limitations and improve the robustness and usability of the methods:
 - **Stratified K-Fold Cross-Validation:** It is valuable for balanced datasets but especially helpful when the imbalanced nature of the data should be preserved in each fold.
+
 - **Early Stopping and Regularization:** Early stopping or penalization during training within cross-validation, some of the mechanisms can minimize overfitting risks especially within complex forms of the estimate model.
 
 
 ### 4. What parameters have you exposed to your users in order to use your model selectors?
 The implementation provides flexibility by exposing the following parameters:
 - **For K-Fold Cross-Validation:**
-  - k: It shows the number of divisions that should be made to splits the dataset into folds. The default value for them is 5 or 10 that is depending on the number of records in the involved data set.
-  - shuffle: Boolean indicating whether the block of data should be shuffled before dividing into folds. Default is True to eliminate selection bias which is otherwise known as risky bias.
-  - random_state: Optional for the sake of reproducibility of the splits: an integer that is used to randomize the splits.
+  - **k**: It shows the number of divisions that should be made to splits the dataset into folds. The default value for them is 5 or 10 that is depending on the number of records in the involved data set.
+  - **shuffle**: Boolean indicating whether the block of data should be shuffled before dividing into folds. Default is True to eliminate selection bias which is otherwise known as risky bias.
+  - **random_state**: Optional for the sake of reproducibility of the splits: an integer that is used to randomize the splits.
 
 - **For Bootstrapping:**
-  - n_samples: This is the number of Bootstrap samples to be produced as indicated in the balanced Bootstrap algorithm above. Default is 1000 so that the sample size is big enough for accurate estimation.
-  - sample_size: The size of each bootstrap sample as a proportion of the full sample sizes. It is 1.0 by default, so every record in the dataset will be sampled with replacement.
-  - random_state: A non-negative integer such that setting this argument repeatedly to the same value will make the resampling statistically reproducible.
+  - **n_samples**: This is the number of Bootstrap samples to be produced as indicated in the balanced Bootstrap algorithm above. Default is 1000 so that the sample size is big enough for accurate estimation.
+  - **sample_size**: The size of each bootstrap sample as a proportion of the full sample sizes. It is 1.0 by default, so every record in the dataset will be sampled with replacement.
+  - **random_state**: A non-negative integer such that setting this argument repeatedly to the same value will make the resampling statistically reproducible.
 
 The ability to configure these parameters, makes the methods versatile enough to handle a wide range of datasets and users needs for any other machine learning processes.
 
@@ -87,7 +88,8 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
 
 1. **Wine Quality Dataset**  
    **Description**: This test evaluates the performance of different regression models (linear, ridge, and lasso) on the Wine Quality dataset, using 5-fold cross-validation and bootstrapping methods. It also calculates the AIC score for model comparison.
-   ```python
+
+    ```python
    test_wine_quality()
    
 **OUTPUTS**:
@@ -95,15 +97,17 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
   <img src="results/Wine_quality_test_result_1.png" alt="Wine Quality Test Result" width="500" height="200"/>
   <img src="results/Wine_quality_test_result_2.png" alt="Wine Quality Test Result" width="500" height="200"/>
 </div>
-   
+<br>
 <div style="display: flex; justify-content: center; gap: 20px;">
   <img src="test/Test Wine Quality.png" alt="Test Wine Quality" width="500" height="300"/>
   <img src="test/Test Wine Quality_AIC.png" alt="Test Wine Quality AIC" width="500" height="300"/>
 </div>    
+
    
 2. **Boston Housing Dataset**  
    **Description**: This test evaluates the models (linear, ridge, and lasso) on the Boston Housing dataset. It computes the k-fold cross-validation MSE, bootstrapping MSE, and AIC score for each model.
-   ```python
+
+    ```python
    test_boston_housing()
    
 **OUTPUTS**:
@@ -111,7 +115,7 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
   <img src="results/Boston_housing_dataset_test_1.png" alt="Boston Housing Dataset Test Result" width="500" height="200"/>
   <img src="results/Boston_housing_dataset_test_2.png" alt="Boston Housing Dataset Test Result" width="500" height="200"/>
 </div>
-
+<br>
 <div style="display: flex; justify-content: center; gap: 20px;">
   <img src="test/Test Boston Housing.png" alt="Test Boston Housing" width="500" height="300"/>
   <img src="test/Test Boston Housing_AIC.png" alt="Test Boston Housing AIC" width="500" height="300"/>
@@ -120,7 +124,8 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
 
 3. **Diabetes Dataset**
    **Description**: This test performs regression on the Pima Indians Diabetes dataset, comparing the models using cross-validation, bootstrapping, and AIC score.
-   ```python
+
+    ```python
    test_diabetes()
    
 **OUTPUTS**:
@@ -128,7 +133,7 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
   <img src="results/Diabetes_dataset_test_1.png" alt="Diabetes Dataset Test Result" width="500" height="200"/>
   <img src="results/Diabetes_dataset_test_2.png" alt="Diabetes Dataset Test Result" width="500" height="200"/>
 </div>
-   
+<br>   
 <div style="display: flex; justify-content: center; gap: 20px;">
   <img src="test/Test Diabetes.png" alt="Test Diabetes" width="500" height="300"/>
   <img src="test/Test Diabetes_AIC.png" alt="Test Diabetes AIC" width="500" height="300"/>
@@ -136,7 +141,8 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
 
 4. **Concrete Strength Dataset**
    **Description**: This test assesses the concrete compressive strength dataset, evaluating linear, ridge, and lasso regression models using cross-validation, bootstrapping, and AIC score.
-   ```python
+
+    ```python
    test_concrete_strength()
    
 **OUTPUTS**:
@@ -144,7 +150,7 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
   <img src="results/Concrete_strength_dataset_test_1.png" alt="Concrete Strength Dataset Test Result" width="500" height="200"/>
   <img src="results/Concrete_strength_dataset_test_2.png" alt="Concrete Strength Dataset Test Result" width="500" height="200"/>
 </div>
-   
+<br>   
 <div style="display: flex; justify-content: center; gap: 20px;">
   <img src="test/Test Concrete Strength.png" alt="Test Concrete Strength" width="500" height="300"/>
   <img src="test/Test Concrete Strength_AIC.png" alt="Test Concrete Strength AIC" width="500" height="300"/>
@@ -152,6 +158,7 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
 
 5. **Polynomial Regression**
    **Description**: This test evaluates polynomial regression models (with degree 2) on synthetic data to compare the performance of linear, ridge, and lasso regression models.
+ 
    ```python
    test_polynomial_regression()
    
@@ -160,11 +167,12 @@ Here are the test cases that demonstrate how to use the ModelSelector class on d
   <img src="results/Polynomial_regression_test_1.png" alt="Polynomial Regression Test Result" width="500" height="200"/>
   <img src="results/Polynomial_regression_test_2.png" alt="Polynomial Regression Test Result" width="500" height="200"/>
 </div>
-   
+<br>   
 <div style="display: flex; justify-content: center; gap: 20px;">
   <img src="test/Test Polynomial Regression.png" alt="Test Polynomial Regression" width="500" height="300"/>
   <img src="test/Test Polynomial Regression_AIC.png" alt="Test Polynomial Regression AIC" width="500" height="300"/>
 </div> 
+
 
 ## Additional Features
 Several additional features have been implemented to enhance the model selection process:
@@ -180,7 +188,7 @@ Several additional features have been implemented to enhance the model selection
 - **VisualizeModelComparison**: This class visualizes the comparison between models by plotting a bar graph of k-fold cross-validation MSE, bootstrap MSE, and AIC for all models, offering better insight into model performance.
 
 
-### Conclusion
+## Conclusion
 If you have not heard of K-fold cross-validation and bootstrapping, you cannot overemphasize how valuable these techniques are when it comes to evaluating and selecting different machine learning models. These methods assist in giving reliable and impartial evaluation of how well a model or a system does and how preditably it shall generalize the new unseen data. K-fold cross-validation provides the guideline for every data disseminating its experiences to the training and testing phases, making the model to be fully overestimated and also underestimated. On the other hand, bootstrapping use resampling to assess the stability and accuracy of the model, it provides more insights of the model than the cross-validation. Both methods are free of restrictions and can be used together with virtually any datasets and models of analysis without any strict constraints.
 
 However as with any other tool these approaches are not without their weaknesses. They can be slow for large data sets, whereas for small data sets or data sets with unequal proportions the performance can deteriorate. Gladly, most of these issues can easily be solved by employment of techniques such as, use of stratified sampling, adjusting fold or sample sizes, or simply running the simulations for a higher number of iterations to improve the accuracy. K-fold cross validation and Bootstrapping comes very handy when applied in the right manners; For any one working on the Machine learning it is a potent weapon to have from model building perspective.
