@@ -84,6 +84,63 @@ After installation, you can run the test cases as follows:
 ```bash
 python test_model_selector.py
 ```
+This will run all the test cases and print the results for each dataset, including the Mean Squared Error (MSE) from cross-validation and bootstrapping, and the AIC score.
+
+## Test Cases Outputs
+
+Here are the test cases that demonstrate how to use the ModelSelector class on different datasets. Each test case includes cross-validation, bootstrapping, and model comparison.
+
+1. **Wine Quality Dataset**  
+   **Description**: This test evaluates the performance of different regression models (linear, ridge, and lasso) on the Wine Quality dataset, using 5-fold cross-validation and bootstrapping methods. It also calculates the AIC score for model comparison.
+   ```python
+   test_wine_quality()
+   
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="test/Test Wine Quality.png" alt="Test Wine Quality" width="500" height="300"/>
+  <img src="test/Test Wine Quality_AIC.png" alt="Test Wine Quality AIC" width="500" height="300"/>
+</div>    
+   
+2. **Boston Housing Dataset**  
+   **Description**: This test evaluates the models (linear, ridge, and lasso) on the Boston Housing dataset. It computes the k-fold cross-validation MSE, bootstrapping MSE, and AIC score for each model.
+   ```python
+   test_boston_housing()
+
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="test/Test Boston Housing.png" alt="Test Boston Housing" width="500" height="300"/>
+  <img src="test/Test Boston Housing_AIC.png" alt="Test Boston Housing AIC" width="500" height="300"/>
+</div>
+
+
+3. **Diabetes Dataset**
+   **Description**: This test performs regression on the Pima Indians Diabetes dataset, comparing the models using cross-validation, bootstrapping, and AIC score.
+   ```python
+   test_diabetes()
+   
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="test/Test Diabetes.png" alt="Test Diabetes" width="500" height="300"/>
+  <img src="test/Test Diabetes_AIC.png" alt="Test Diabetes AIC" width="500" height="300"/>
+</div>    
+
+4. **Concrete Strength Dataset**
+   **Description**: This test assesses the concrete compressive strength dataset, evaluating linear, ridge, and lasso regression models using cross-validation, bootstrapping, and AIC score.
+   ```python
+   test_concrete_strength()
+   
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="test/Test Concrete Strength.png" alt="Test Concrete Strength" width="500" height="300"/>
+  <img src="test/Test Concrete Strength_AIC.png" alt="Test Concrete Strength AIC" width="500" height="300"/>
+</div>    
+
+5. **Polynomial Regression**
+   **Description**: This test evaluates polynomial regression models (with degree 2) on synthetic data to compare the performance of linear, ridge, and lasso regression models.
+   ```python
+   test_polynomial_regression()
+   
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="test/Test Polynomial Regression.png" alt="Test Polynomial Regression" width="500" height="300"/>
+  <img src="test/Test Polynomial Regression_AIC.png" alt="Test Polynomial Regression AIC" width="500" height="300"/>
+</div> 
+
 ## Additional Features
 Several additional features have been implemented to enhance the model selection process:
 - **Added Lasso and Ridge with Normal Linear Regression**: Lasso and Ridge regression models have been added alongside the basic linear regression model to provide regularization techniques that help in controlling overfitting.
@@ -97,56 +154,6 @@ Several additional features have been implemented to enhance the model selection
   
 - **VisualizeModelComparison**: This class visualizes the comparison between models by plotting a bar graph of k-fold cross-validation MSE, bootstrap MSE, and AIC for all models, offering better insight into model performance.
 
-## Test Cases
-
-Here are the test cases that demonstrate how to use the ModelSelector class on different datasets. Each test case includes cross-validation, bootstrapping, and model comparison.
-
-1. **Wine Quality Dataset**  
-   **Description**: This test evaluates the performance of different regression models (linear, ridge, and lasso) on the Wine Quality dataset, using 5-fold cross-validation and bootstrapping methods. It also calculates the AIC score for model comparison.
-   ```python
-   test_wine_quality()
-   
-<div style="display: flex; justify-content: center; gap: 20px;">
-  <img src="test/Test Wine Quality.png" alt="Test Wine Quality" width="700" height="350"/>
-  <img src="test/Test Wine Quality_AIC.png" alt="Test Wine Quality AIC" width="700" height="350"/>
-</div>    
-   
-2. **Boston Housing Dataset**  
-   **Description**: This test evaluates the models (linear, ridge, and lasso) on the Boston Housing dataset. It computes the k-fold cross-validation MSE, bootstrapping MSE, and AIC score for each model.
-   ```python
-   test_boston_housing()
-
-<div style="display: flex; justify-content: center; gap: 20px;">
-  <img src="test/Test Boston Housing.png" alt="Test Boston Housing" width="500" height="350"/>
-  <img src="test/Test Boston Housing_AIC.png" alt="Test Boston Housing AIC" width="500" height="350"/>
-</div>
-
-
-3. **Diabetes Dataset**
-   **Description**: This test performs regression on the Pima Indians Diabetes dataset, comparing the models using cross-validation, bootstrapping, and AIC score.
-   ```python
-   test_diabetes()
-
-4. **Concrete Strength Dataset**
-   **Description**: This test assesses the concrete compressive strength dataset, evaluating linear, ridge, and lasso regression models using cross-validation, bootstrapping, and AIC score.
-   ```python
-   test_concrete_strength()
-
-5. **Polynomial Regression**
-   **Description**: This test evaluates polynomial regression models (with degree 2) on synthetic data to compare the performance of linear, ridge, and lasso regression models.
-   ```python
-   test_polynomial_regression()
-   
-6. **Example Usage**
-   After cloning the repository and installing dependencies, you can run the tests as follows:
-   ```python
-   test_wine_quality()  # Test the Wine Quality dataset
-   test_polynomial_regression()  # Test Polynomial Regression
-   test_boston_housing()  # Test the Boston Housing dataset
-   test_concrete_strength()  # Test Concrete Strength dataset
-   test_diabetes()  # Test the Diabetes dataset
-
-This will run all the test cases and print the results for each dataset, including the Mean Squared Error (MSE) from cross-validation and bootstrapping, and the AIC score.
 
 ### Conclusion
 If you have not heard of K-fold cross-validation and bootstrapping, you cannot overemphasize how valuable these techniques are when it comes to evaluating and selecting different machine learning models. These methods assist in giving reliable and impartial evaluation of how well a model or a system does and how preditably it shall generalize the new unseen data. K-fold cross-validation provides the guideline for every data disseminating its experiences to the training and testing phases, making the model to be fully overestimated and also underestimated. On the other hand, bootstrapping use resampling to assess the stability and accuracy of the model, it provides more insights of the model than the cross-validation. Both methods are free of restrictions and can be used together with virtually any datasets and models of analysis without any strict constraints.
